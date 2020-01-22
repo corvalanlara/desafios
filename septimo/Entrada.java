@@ -1,10 +1,10 @@
 package septimo;
 
 public class Entrada {
-	int precio;
-	int numeroAsiento;
-	Cliente cliente;
-	Vendedor vendedor;
+	private int precio;
+	private int numeroAsiento;
+	private Cliente cliente;
+	private Vendedor vendedor;
 	
 	public Entrada(int precio, int numeroAsiento, Cliente cliente, Vendedor vendedor) {
 		this.precio = precio;
@@ -12,4 +12,38 @@ public class Entrada {
 		this.cliente = cliente;
 		this.vendedor = vendedor;
 	}
+
+	public int getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+
+	public int getNumeroAsiento() {
+		return numeroAsiento;
+	}
+
+	public void setNumeroAsiento(int numeroAsiento) {
+		this.numeroAsiento = numeroAsiento;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Vendedor getVendedor() {
+		return vendedor;
+	}
+
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
+	}
+	
+	
 }

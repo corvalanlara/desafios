@@ -9,7 +9,7 @@ public class Cliente extends Persona {
 	}
 
 	public String toString() {
-		return String.format("Cliente: %s", this.nombre);
+		return String.format("Cliente: %s", getNombre());
 	}
 	
 	
