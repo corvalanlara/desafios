@@ -12,6 +12,15 @@ public class Entrada {
 		this.cliente = cliente;
 		this.vendedor = vendedor;
 	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Entrada [numeroAsiento=" + numeroAsiento + ", cliente=" + cliente + "]";
+	}
+
+
 
 	public int getPrecio() {
 		return precio;
