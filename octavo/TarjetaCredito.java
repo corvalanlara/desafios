@@ -14,6 +14,14 @@ public class TarjetaCredito extends Producto {
     this.cupo = 250000;
   }
   
+  public void pagar(int pago) {
+    if (this.deuda > pago || this.deuda < pago) {
+      System.out.println("El pago debe ser del total de la deuda");
+    } else {
+      this.deuda = 0;
+    }
+  }
+  
   public int getSaldo() {
     return this.saldo;
   }
