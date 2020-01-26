@@ -99,8 +99,5 @@ public class Evento {
   return false;
  }
 
- public String toString() {
-   return "Evento: " + this.nombre;
- }
 
 }

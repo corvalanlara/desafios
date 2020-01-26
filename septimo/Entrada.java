@@ -5,15 +5,14 @@ public class Entrada {
 	private int numeroAsiento;
 	private Cliente cliente;
 	private Vendedor vendedor;
-	
+
 	public Entrada(int precio, int numeroAsiento, Cliente cliente, Vendedor vendedor) {
 		this.precio = precio;
 		this.numeroAsiento = numeroAsiento;
 		this.cliente = cliente;
 		this.vendedor = vendedor;
 	}
-	
-	
+
 	
 	@Override
 	public String toString() {
@@ -53,6 +52,6 @@ public class Entrada {
 	public void setVendedor(Vendedor vendedor) {
 		this.vendedor = vendedor;
 	}
-	
-	
+
+
 }

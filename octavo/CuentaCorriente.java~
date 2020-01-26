@@ -1,0 +1,12 @@
+public class CuentaCorriente {
+  
+  private int numeroCuenta;
+  
+  public CuentaCorriente() {
+    this.numeroCuenta = generarNumeroCuenta();
+  }
+  
+  private generarNumeroCuenta() {
+    return 1234;
+  }
+}
