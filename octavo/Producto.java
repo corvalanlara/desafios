@@ -1,4 +1,5 @@
-import java.util.UUID;
+package octavo;
+
 import java.lang.RuntimeException;
 
 public class Producto {
@@ -8,12 +9,13 @@ public class Producto {
   
   public String generarCuenta(String rut, Object object) {
     String code;
-    if (object.getClass().getName() == "TarjetaCredito") {
+    System.out.println(object.getClass().getSimpleName());
+    if (object.getClass().getSimpleName().equals("TarjetaCredito")) {
       code = "01-";
-    } else if (object.getClass().getName() == "CuentaCorriente") {
+    } else if (object.getClass().getSimpleName().equals("CuentaCorriente")) {
       code = "00-";
     } else {
-      throw new RuntimeException("Â¡No existe ese producto!");
+      throw new RuntimeException("¡No existe ese producto!");
     }
     return code + rut.substring(0, rut.length() - 1);
   }

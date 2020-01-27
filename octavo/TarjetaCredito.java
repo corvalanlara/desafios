@@ -1,3 +1,5 @@
+package octavo;
+
 public class TarjetaCredito extends Producto {
   
   private int cupo;
@@ -9,8 +11,8 @@ public class TarjetaCredito extends Producto {
   
   public TarjetaCredito(String rut) {
     this.numeroCuenta = generarCuenta(rut, this);
-    this.saldo = 0;
-    this.deuda = 0;
+    this.saldo = 2000;
+    this.deuda = 2000;
     this.cupo = 250000;
   }
   
@@ -34,6 +36,10 @@ public class TarjetaCredito extends Producto {
   
   public int getDeuda() {
     return this.deuda;
+  }
+  
+  public String getNumeroCuenta() {
+	  return this.numeroCuenta;
   }
   
   public void setSaldo(int saldo) {

@@ -1,3 +1,5 @@
+package octavo;
+
 public class CuentaCorriente extends Producto {
   
   int costo;
@@ -44,8 +46,12 @@ public class CuentaCorriente extends Producto {
     this.costo = costo;
   }
   
-  public void setSaldo(int saldot) {
+  public void setSaldo(int saldo) {
     this.saldo = saldo;
+  }
+  
+  public String getNumeroCuenta() {
+	  return this.numeroCuenta;
   }
   
   public String toString() {
