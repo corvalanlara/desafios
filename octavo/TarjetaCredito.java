@@ -15,8 +15,10 @@ public class TarjetaCredito extends Producto {
   }
   
   public void pagar(int pago) {
-    if (this.deuda > pago || this.deuda < pago) {
-      System.out.println("El pago debe ser del total de la deuda");
+    if (this.deuda < pago) {
+      System.out.println("El pago igual o menor a la deuda total");
+    } else if (this.deuda > pago) {
+      this.deuda -= pago;
     } else {
       this.deuda = 0;
     }
