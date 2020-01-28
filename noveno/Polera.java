@@ -8,4 +8,10 @@ public class Polera extends Articulo {
 		super(nombre, precio, codigo, talla, marca);
 		this.color = color;
 	}
+
+	@Override
+	public String toString() {
+		return "Polera [color=" + color + ", nombre=" + nombre + ", precio=" + precio + ", codigo=" + codigo
+				+ ", talla=" + talla + ", marca=" + marca + "]";
+	}
 }

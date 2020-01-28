@@ -10,6 +10,11 @@ public class Pantalon extends Articulo{
 		this.bolsillos = bolsillos;
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "Pantalon [color=" + color + ", bolsillos=" + bolsillos + ", nombre=" + nombre + ", precio=" + precio
+				+ ", codigo=" + codigo + ", talla=" + talla + ", marca=" + marca + "]";
+	}
 	
 
 }

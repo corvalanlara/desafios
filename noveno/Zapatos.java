@@ -9,4 +9,10 @@ public class Zapatos extends Articulo {
 		this.modelo = modelo;
 		// TODO Auto-generated constructor stub
 	}
+
+	@Override
+	public String toString() {
+		return "Zapatos [modelo=" + modelo + ", nombre=" + nombre + ", precio=" + precio + ", codigo=" + codigo
+				+ ", talla=" + talla + ", marca=" + marca + "]";
+	}
 }
