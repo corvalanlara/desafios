@@ -5,8 +5,8 @@ public class Libro extends Recurso {
 	int paginas;
 	String imprenta;
 	
-	public Libro(String nombre, boolean reservado, int codigo, int paginas, String imprenta) {
-		super(nombre, reservado, codigo);
+	public Libro(String nombre, boolean reservado, int codigo, Cliente prestadoA, int paginas, String imprenta) {
+		super(nombre, reservado, codigo, prestadoA);
 		this.paginas = paginas;
 		this.imprenta = imprenta;
 	}

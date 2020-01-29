@@ -12,11 +12,9 @@ public class Stock implements Iterable<Recurso> {
 		this.listaRecursos = listaRecursos;
 	};
 	
-    public static Stock obtenerSingleton(ArrayList<Recurso> lista) {
+    public static synchronized Stock obtenerSingleton(ArrayList<Recurso> lista) {
         if (stock == null){
             stock = new Stock(lista);
-        } else {
-            System.out.println("No se puede crear el objeto porque ya existe un objeto de la clase Stock");
         }
         
         return stock;
@@ -26,5 +24,10 @@ public class Stock implements Iterable<Recurso> {
 	public Iterator<Recurso> iterator() {
 		Iterator<Recurso> itera = listaRecursos.iterator();
         return itera; 
+	}
+
+	@Override
+	public String toString() {
+		return "Stock [listaRecursos=" + listaRecursos + "]";
 	}
 }
