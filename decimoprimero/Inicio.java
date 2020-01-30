@@ -3,10 +3,8 @@ package decimoprimero;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Inicio {
@@ -24,7 +22,7 @@ public class Inicio {
 		long ciudades = listado.stream().map(n -> n.ciudad).distinct().count();
 		System.out.println(ciudades);
 		
-		long elite = listado.stream().filter(n -> n.correo.contains("elite")).count();
+		long elite = listado.stream().filter(n -> n.correo.contains("elit")).count();
 		System.out.println(elite);
 		
 		List<Integer> portres = listado.stream().map(n -> n.monto * 3).filter(n -> n > 29000).collect(Collectors.toList());
@@ -41,7 +39,7 @@ public class Inicio {
 	}
 	
 	private static List<Persona> loadCSV() throws IOException {
-		 BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\admin\\Desktop\\datos.csv"));
+		 BufferedReader br = new BufferedReader(new FileReader("datos.csv"));
 		 List<Persona> listado = br.lines().map(line -> line.split(","))
 		 .map(values -> new Persona(values[0], values[1], values[2],
 		Integer.parseInt(values[3])))
