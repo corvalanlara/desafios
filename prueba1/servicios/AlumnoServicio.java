@@ -19,20 +19,17 @@ public class AlumnoServicio {
 		this.listaAlumnos = listaAlumnos;
 	}
 
-	void crearAlumno(Alumno alumno) {
+	public void crearAlumno(Alumno alumno) {
+                alumnoServicio.addListaAlumnos(alumno.getRut(), alumno);
+		System.out.println(alumno);
+	}
+	
+	public void agregarMateria(String rutAlumno, Materia currentMate) {
 		
 	}
 	
-	void agregarMateria(String rutAlumno, Materia currentMate) {
-		
-	}
-	
-	List<Materia> materiasPorAlumno(String rutAlumno) {
+	public List<Materia> materiasPorAlumno(String rutAlumno) {
 		return new ArrayList<Materia>();
-	}
-	
-	Map<String, Alumno> listarAlumnos() {
-		return new HashMap<String, Alumno>();
 	}
 	
     public static synchronized AlumnoServicio obtenerSingleton(Map<String, Alumno> lista) {
@@ -52,7 +49,7 @@ public class AlumnoServicio {
 		return "AlumnoServicio [listaAlumnos=" + listaAlumnos + "]";
 	}
 
-	public Map<String, Alumno> getListaAlumnos() {
+	public Map<String, Alumno> listarAlumnos() {
 		return listaAlumnos;
 	}
 	

@@ -1,9 +1,5 @@
 package vistas;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +9,7 @@ import modelos.Alumno;
 import modelos.Materia;
 import modelos.MateriaEnum;
 import servicios.AlumnoServicio;
+import servicios.ArchivosServicio;
 
 public class Menu extends MenuTemplate {
 	
@@ -34,8 +31,7 @@ public class Menu extends MenuTemplate {
 		String direccion = this.scanner.nextLine();
 		Alumno nuevo = new Alumno(rut, nombre, apellido, direccion);
 		AlumnoServicio lista = AlumnoServicio.obtenerSingleton();
-		lista.addListaAlumnos(rut, nuevo);
-		System.out.println(nuevo);
+                lista.crearAlumno(nuevo);
 	}
 	
 	@Override
@@ -46,8 +42,8 @@ public class Menu extends MenuTemplate {
 		
 		AlumnoServicio lista = AlumnoServicio.obtenerSingleton(new HashMap<String, Alumno>());
 		Alumno alumno;
-		if(lista.getListaAlumnos().containsKey(rut)) {
-			alumno = lista.getListaAlumnos().get(rut);
+		if(lista.listarAlumnos().containsKey(rut)) {
+			alumno = lista.listarAlumnos().get(rut);
                         
                         System.out.println("1.- " + MateriaEnum.MATEMATICAS);
                         System.out.println("2.- " + MateriaEnum.LENGUAJE);
@@ -86,8 +82,8 @@ public class Menu extends MenuTemplate {
 		
 		AlumnoServicio lista = AlumnoServicio.obtenerSingleton(new HashMap<String, Alumno>());
 		Alumno alumno;
-		if(lista.getListaAlumnos().containsKey(rut)) {
-			alumno = lista.getListaAlumnos().get(rut);
+		if(lista.listarAlumnos().containsKey(rut)) {
+			alumno = lista.listarAlumnos().get(rut);
                         List<Materia> materias = alumno.getMaterias();
                         if(materias.size() > 0) {
                                 System.out.println("Ingrese el número");
@@ -127,7 +123,11 @@ public class Menu extends MenuTemplate {
 	@Override
 	public void listarAlumnos() {
 		AlumnoServicio lista = AlumnoServicio.obtenerSingleton();
-		System.out.println(lista.getListaAlumnos());
+                if(lista.listarAlumnos().isEmpty()) {
+                        System.out.println("No hay alumnos registrados");
+                } else {
+                        System.out.println(lista.listarAlumnos());
+                }
 	}
 	
 	@Override
@@ -136,47 +136,17 @@ public class Menu extends MenuTemplate {
 		System.out.println("Ingresa la ruta en donde se encuentra el archivo notas.csv:");
 		String file = this.scanner.nextLine();
 		
-		Map<String, Alumno> lista = new HashMap<String, Alumno>();
-		
-		String lectura = "";
-		try {
-			FileReader fr = new FileReader(file);
-			BufferedReader br = new BufferedReader(fr);
-			lectura = br.readLine();
-			while(lectura!=null) {
-				ArrayList<String> temp = new ArrayList<String>(Arrays.asList(lectura.split(",")));
-				String rut = temp.get(0);
-				String nombre = temp.get(1);
-				MateriaEnum materia = MateriaEnum.valueOf(temp.get(2));
-				double nota = Double.parseDouble(temp.get(3));
-				
-				if(lista.get(rut) != null) {
-					Alumno alumno = lista.get(rut);
-					alumno.addMaterias(materia);
-					alumno.addNota(materia, nota);
-					
-				} else {
-					Alumno alumno = new Alumno(rut, nombre, "", "");
-					alumno.addMaterias(materia);
-					alumno.addNota(materia, nota);
-					lista.put(rut, alumno);
-				}
-
-				lectura = br.readLine();
-			}
-			br.close();
-			fr.close();
-		} catch (Exception e) {
-			System.out.println("Error: " + e);
-		}
-		AlumnoServicio service = AlumnoServicio.obtenerSingleton();
-                service.addListaAListaAlumnos(lista);
-		System.out.println("Datos cargados correctamente");
+                ArchivosServicio.cargarDatos(file);
 	}
 
         @Override
         public void exportarDatos() {
+                this.scanner = new Scanner(System.in);
+		System.out.println("Ingresa la ruta en donde se encuentra el archivo notas.csv:");
+		String file = this.scanner.nextLine();
                 
+                AlumnoServicio service = AlumnoServicio.obtenerSingleton();
+                ArchivosServicio.exportarDatos(service.listarAlumnos(), file);
         }
        
 }
