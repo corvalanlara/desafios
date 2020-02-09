@@ -1,7 +1,9 @@
 package modelos;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Alumno {
 
@@ -73,7 +75,7 @@ public class Alumno {
 		}
 	}
 	
-	public int isMateria(MateriaEnum materia) {
+	private int isMateria(MateriaEnum materia) {
 		for (Materia actual: this.materias) {
 			if(actual.nombre.equals(materia)) {
 				return this.materias.indexOf(actual);
@@ -91,6 +93,12 @@ public class Alumno {
 		}
 	}
 	
-	
+	public Map<MateriaEnum, Double> getPromedios() {
+                Map<MateriaEnum, Double> mapa = new HashMap<MateriaEnum, Double>();
+                for(Materia materia: materias) {
+                        mapa.put(materia.getEnum(), materia.getPromedio());
+                }
+                return mapa;
+        }
 	
 }

@@ -65,6 +65,13 @@ public class ArchivosServicio {
 	
 	public static void exportarDatos(Map<String, Alumno> alumnos, String ruta) {
 		File archivo = new File(ruta);
-                
+                if(archivo.isDirectory())
+                        ruta += "promedios.txt";
+                List<Alumno> lista = new ArrayList<>(alumnos.values());
+                Map<Alumno, Map<MateriaEnum, Double>> listaPromedios = new HashMap<>();
+                for(Alumno alumno: lista) {
+                    listaPromedios.put(alumno, alumno.getPromedios());
+                }
+                System.out.println(listaPromedios);
 	}
 }

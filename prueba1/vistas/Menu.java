@@ -142,7 +142,7 @@ public class Menu extends MenuTemplate {
         @Override
         public void exportarDatos() {
                 this.scanner = new Scanner(System.in);
-		System.out.println("Ingresa la ruta en donde se encuentra el archivo notas.csv:");
+		System.out.println("Ingresa la ruta en donde se encontrará el archivo promedios.txt:");
 		String file = this.scanner.nextLine();
                 
                 AlumnoServicio service = AlumnoServicio.obtenerSingleton();

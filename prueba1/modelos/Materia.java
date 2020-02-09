@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Materia {
 	MateriaEnum nombre;
-	List<Double> notas = new ArrayList<Double>();
+	List<Double> notas = new ArrayList<>();
 	
 	public Materia(MateriaEnum nombre) {
 		super();
@@ -22,6 +22,16 @@ public class Materia {
         
         public MateriaEnum getEnum() {
                 return nombre;
+        }
+        
+        public List<Double> getNotas() {
+                return notas;
+        }
+        
+        public double getPromedio() {
+            if(!getNotas().isEmpty())
+                return Math.round(getNotas().stream().mapToDouble(n -> n).average().getAsDouble() * 10) / 10.0;
+            return -1;
         }
 
 	@Override

@@ -5,7 +5,7 @@ import java.util.Scanner;
 import modelos.Alumno;
 import servicios.AlumnoServicio;
 
-public class MenuTemplate {
+public abstract class MenuTemplate {
 	protected Scanner scanner;
 	
 	protected MenuTemplate() {
