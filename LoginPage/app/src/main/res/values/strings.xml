@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LoginPage</string>
+    <string name="usuario">Ingrese su nombre de usuario</string>
+    <string name="contraseña">Ingrese su contraseña</string>
+    <string name="ingresar">INGRESAR</string>
+    <string name="exito">Usuario ingresado con éxito</string>
+    <string name="fallo">Debes ingresar los datos solicitados para ingresar</string>
+    <string name="url">https://desafiolatam.com/assets/home/logo-academia-bla-790873cdf66b0e681dfbe640ace8a602f5330bec301c409744c358330e823ae3.png</string>
+</resources>
