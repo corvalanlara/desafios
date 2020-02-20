@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                         EditText user = findViewById(R.id.usuario);
                         String usertexto = user.getText().toString();
                         EditText pass = findViewById(R.id.password);
-                        String passtexto = user.getText().toString();
+                        String passtexto = pass.getText().toString();
 
                         if(!passtexto.isEmpty() && !usertexto.isEmpty()) {
                             Toast toast = Toast.makeText(context, getString(R.string.exito), Toast.LENGTH_SHORT);
