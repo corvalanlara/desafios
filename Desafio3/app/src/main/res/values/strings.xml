@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Desafio3</string>
+    <string name="error_gson">Error al cargar la pregunta</string>
+    <string name="f_pregunta">Pregunta</string>
+    <string name="f_categoria">Categoría</string>
+    <string name="f_dificultad">Dificultad</string>
+    <string name="f_boton">Check</string>
+    <string name="f_verdadero">Verdadero</string>
+    <string name="f_falso">Falso</string>
+    <string name="correcto">¡Así es! ¡Respuesta correcta!</string>
+    <string name="incorrecto">Pucha, no</string>
+</resources>

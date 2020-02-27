@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Desafio4</string>
+    <string name="cargar">Cargar Imagen</string>
+    <string name="texto_main">Sección de carga de imágenes</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="sinfoto">No puedes pasar a la siguiente actividad sin haber tomado un foto antes</string>
+    <string name="abrir_web">Abrir Web</string>
+    <string name="compartir">Compartir la información</string>
+    <string name="webok">Has realizado un intent a web</string>
+    <string name="shareok">Has realizado un intent a share</string>
+</resources>
