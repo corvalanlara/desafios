@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="enigma_box">56dp</dimen>
+    <dimen name="result_box">64dp</dimen>
+    <dimen name="margin_left">44dp</dimen>
+</resources>
