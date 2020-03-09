@@ -10,9 +10,13 @@ import android.widget.TextView;
 
 import com.example.passwordstrength.models.IPresenterView;
 
+import org.w3c.dom.Text;
+
 import static com.example.passwordstrength.models.Verifier.howStrength;
 
-public class MainActivity extends AppCompatActivity implements IPresenterView {
+public class MainActivity extends AppCompatActivity implements IPresenterView.View {
+
+    TextView feed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +24,9 @@ public class MainActivity extends AppCompatActivity implements IPresenterView {
         setContentView(R.layout.activity_main);
 
         EditText pass = findViewById(R.id.pass_view);
-        final TextView feed = findViewById(R.id.feedback_view);
+        feed = findViewById(R.id.feedback_view);
+
+        final IPresenterView presenter = new IPresenterView(this);
 
         pass.addTextChangedListener(new TextWatcher() {
             @Override
@@ -35,51 +41,32 @@ public class MainActivity extends AppCompatActivity implements IPresenterView {
 
             @Override
             public void afterTextChanged(Editable s) {
-                evaluarPassword(feed, s.toString());
+                presenter.evaluarPassword(s.toString());
             }
         });
     }
 
-    @Override
-    public void evaluarPassword(TextView view, String pass) {
-        int intensidad = howStrength(pass);
-        cambiarTexto(view, intensidad);
-        cambiarColor(view, intensidad);
-    }
 
     @Override
-    public void cambiarTexto(TextView view, int intensidad) {
+    public void cambiarTextoYColor(int intensidad) {
         switch(intensidad) {
             case 1:
-                view.setText(R.string.weak);
+                feed.setText(R.string.weak);
+                feed.setBackgroundColor(getColor(R.color.colorWeak));
                 break;
             case 2:
-                view.setText(R.string.medium);
+                feed.setText(R.string.medium);
+                feed.setBackgroundColor(getColor(R.color.colorMedium));
                 break;
             case 3:
-                view.setText(R.string.strong);
+                feed.setText(R.string.strong);
+                feed.setBackgroundColor(getColor(R.color.colorStrong));
                 break;
             case 4:
-                view.setText(R.string.very_strong);
+                feed.setText(R.string.very_strong);
+                feed.setBackgroundColor(getColor(R.color.colorVeryStrong));
                 break;
         }
     }
 
-    @Override
-    public void cambiarColor(TextView view, int intensidad) {
-        switch(intensidad) {
-            case 1:
-                view.setBackgroundColor(getColor(R.color.colorWeak));
-                break;
-            case 2:
-                view.setBackgroundColor(getColor(R.color.colorMedium));
-                break;
-            case 3:
-                view.setBackgroundColor(getColor(R.color.colorStrong));
-                break;
-            case 4:
-                view.setBackgroundColor(getColor(R.color.colorVeryStrong));
-                break;
-        }
-    }
 }
