@@ -46,27 +46,28 @@ public class MainActivity extends AppCompatActivity implements IPresenterView.Vi
         });
     }
 
+    @Override
+    public void cambiarWeak() {
+        feed.setText(R.string.weak);
+        feed.setBackgroundColor(getColor(R.color.colorWeak));
+    }
 
     @Override
-    public void cambiarTextoYColor(int intensidad) {
-        switch(intensidad) {
-            case 1:
-                feed.setText(R.string.weak);
-                feed.setBackgroundColor(getColor(R.color.colorWeak));
-                break;
-            case 2:
-                feed.setText(R.string.medium);
-                feed.setBackgroundColor(getColor(R.color.colorMedium));
-                break;
-            case 3:
-                feed.setText(R.string.strong);
-                feed.setBackgroundColor(getColor(R.color.colorStrong));
-                break;
-            case 4:
-                feed.setText(R.string.very_strong);
-                feed.setBackgroundColor(getColor(R.color.colorVeryStrong));
-                break;
-        }
+    public void cambiarMedium() {
+        feed.setText(R.string.medium);
+        feed.setBackgroundColor(getColor(R.color.colorMedium));
+    }
+
+    @Override
+    public void cambiarStrong() {
+        feed.setText(R.string.strong);
+        feed.setBackgroundColor(getColor(R.color.colorStrong));
+    }
+
+    @Override
+    public void cambiarSuperStrong() {
+        feed.setText(R.string.very_strong);
+        feed.setBackgroundColor(getColor(R.color.colorVeryStrong));
     }
 
 }

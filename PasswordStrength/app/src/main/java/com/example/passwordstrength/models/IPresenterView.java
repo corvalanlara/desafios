@@ -1,8 +1,5 @@
 package com.example.passwordstrength.models;
 
-import android.widget.EditText;
-import android.widget.TextView;
-
 import static com.example.passwordstrength.models.Verifier.howStrength;
 
 public class IPresenterView {
@@ -15,11 +12,26 @@ public class IPresenterView {
 
     public void evaluarPassword(String pass) {
         int intensidad = howStrength(pass);
-        view.cambiarTextoYColor(intensidad);
+        switch(intensidad) {
+            case 1:
+                view.cambiarWeak();
+                break;
+            case 2:
+                view.cambiarMedium();
+                break;
+            case 3:
+                view.cambiarStrong();
+                break;
+            case 4:
+                view.cambiarSuperStrong();
+                break;
+        }
     }
 
     public interface View {
-
-        void cambiarTextoYColor(int intensidad);
+        void cambiarWeak();
+        void cambiarMedium();
+        void cambiarStrong();
+        void cambiarSuperStrong();
     }
 }
