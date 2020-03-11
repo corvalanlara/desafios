@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PasswordStrength</string>
+    <string name="pass_hint">Crea una nueva contraseña</string>
+    <string name="weak">WEAK</string>
+    <string name="medium">MEDIUM</string>
+    <string name="strong">STRONG</string>
+    <string name="very_strong">VERY STRONG</string>
+</resources>
