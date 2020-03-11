@@ -2,14 +2,10 @@ package com.example.passwordstrength.models;
 
 public class Verifier {
 
-    public static final int MIN_LENGTH = 5;
-    public static final int SUPERSTRONG = 4;
-    public static final int STRONG = 3;
-    public static final int MEDIUM = 2;
-    public static final int WEAK = 1;
-
     private static boolean tieneLongitudRequerida(String pass) {
-        return pass.length() > MIN_LENGTH;
+        if (pass.length() > 5)
+                return true;
+        return false;
     }
 
     private static boolean tieneMayuscula(String pass) {
@@ -22,13 +18,13 @@ public class Verifier {
 
     public static int howStrength(String pass) {
         if(tieneLongitudRequerida(pass) && tieneMayuscula(pass) && tieneNumero(pass))
-            return SUPERSTRONG;
+            return 4;
         else if (tieneLongitudRequerida(pass) && tieneMayuscula(pass) && !tieneNumero(pass))
-            return STRONG;
+            return 3;
         else if (tieneLongitudRequerida(pass) && !tieneMayuscula(pass))
-            return MEDIUM;
+            return 2;
         else if(!tieneLongitudRequerida(pass))
-            return WEAK;
+            return 1;
         else
             return 0;
     }

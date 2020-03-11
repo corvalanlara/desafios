@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.passwordstrength.models.IPresenterView;
-import com.example.passwordstrength.models.Verifier;
 
 import org.w3c.dom.Text;
 
