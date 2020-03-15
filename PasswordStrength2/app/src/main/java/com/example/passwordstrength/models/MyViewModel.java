@@ -1,7 +1,7 @@
 package com.example.passwordstrength.models;
 
+import android.view.View;
 
-import androidx.databinding.BindingAdapter;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -10,15 +10,10 @@ import com.example.passwordstrength.R;
 
 public class MyViewModel extends ViewModel {
 
-    private MutableLiveData<Integer> myColor = new MutableLiveData<>();
-    private MutableLiveData<Integer> myText = new MutableLiveData<>();
+    private MutableLiveData<String> myText = new MutableLiveData<>();
     private MutableLiveData<String> myPass = new MutableLiveData<>();
 
-    public LiveData<Integer> getColor() {
-        return myColor;
-    }
-
-    public LiveData<Integer> getText() {
+    public LiveData<String> getText() {
             return myText;
     }
 
@@ -30,24 +25,24 @@ public class MyViewModel extends ViewModel {
         myPass.setValue(s);
     }
 
-    public void setData(String s) {
+    public void setData(View view, String s) {
         int intensidad = Verifier.howStrength(s);
         switch(intensidad) {
             case 1:
-                myColor.setValue(R.color.colorWeak);
-                myText.setValue(R.string.weak);
+                view.setBackground(view.getResources().getDrawable(R.color.colorWeak));
+                myText.setValue(view.getResources().getString(R.string.weak));
                 break;
             case 2:
-                myColor.setValue(R.color.colorMedium);
-                myText.setValue(R.string.medium);
+                view.setBackground(view.getResources().getDrawable(R.color.colorMedium));
+                myText.setValue(view.getResources().getString(R.string.medium));
                 break;
             case 3:
-                myColor.setValue(R.color.colorStrong);
-                myText.setValue(R.string.strong);
+                view.setBackground(view.getResources().getDrawable(R.color.colorStrong));
+                myText.setValue(view.getResources().getString(R.string.strong));
                 break;
             case 4:
-                myColor.setValue(R.color.colorVeryStrong);
-                myText.setValue(R.string.very_strong);
+                view.setBackground(view.getResources().getDrawable(R.color.colorVeryStrong));
+                myText.setValue(view.getResources().getString(R.string.very_strong));
                 break;
         }
     }

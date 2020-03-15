@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         modelo.getPass().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                modelo.setData(s);
+                modelo.setData(feed, s);
             }
         });
 
