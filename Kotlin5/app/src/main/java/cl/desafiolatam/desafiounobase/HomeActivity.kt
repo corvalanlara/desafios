@@ -80,12 +80,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun handleLanguages() {
-        val langs = sharedPreferences.getString(lang, "").toString()
-	var lista = langs.split("|")
-	for (lang in lista) {
-		if (lang.isNotEmpty()) {
-			resolveLanguage(lang)
-		}
+	val vacio = mutableSetOf<String>()
+        val langs = sharedPreferences.getStringSet(lang, vacio)
+	for (lang in langs!!) {
+		resolveLanguage(lang)
 	}
         //val languages = mutableSetOf()
         //ocupar resolveLanguage para cargar los datos iniciales en los checkboxs
@@ -110,22 +108,21 @@ class HomeActivity : AppCompatActivity() {
     private fun saveLanguages() {
         //crear lo necesario para guardar los idiomas seleccionados por el usuario
         //en sharedpreferences
-	var langs: String = ""
-	var del = "|"
+	var langs = mutableSetOf<String>()
         if (spanishCheckBox.isChecked) {
-		langs = langs + "Spanish" + del
+		langs.add("Spanish")
 	}
 	if (englishCheckBox.isChecked) {
-		langs = langs + "English" + del
+		langs.add("English")
 	}
 	if (germanCheckBox.isChecked) {
-		langs = langs + "German" + del
+		langs.add("German")
 	}
 	if (otherCheckBox.isChecked && otherTextInput.text!!.isNotEmpty()) {
-		langs = langs + "Other" + "*" + otherTextInput.text.toString() + del
+		langs.add("Other" + "*" + otherTextInput.text.toString())
 	}
 
-	sharedPreferences.edit().putString(lang, langs).apply()
+	sharedPreferences.edit().putStringSet(lang, langs).apply()
 
     }
 
