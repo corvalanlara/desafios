@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Agregar Tarea" android:icon="@android:drawable/btn_plus" android:id="@+id/add"/>
+    <item android:title="Borrar Todas" android:id="@+id/remove_all" android:icon="@android:drawable/ic_menu_delete"/>
+</menu>
