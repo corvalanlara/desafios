@@ -1,13 +1,14 @@
 package cl.desafiolatam.desafiodos
 
 import android.content.DialogInterface
-import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cl.desafiolatam.desafiodos.task.OnItemClickListener
@@ -15,17 +16,15 @@ import cl.desafiolatam.desafiodos.task.TaskListAdapter
 import cl.desafiolatam.desafiodos.task.TaskUIDataHolder
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.add_task.view.*
+import cl.desafiolatam.desafiodos.viewmodel.TaskViewModel
 import cl.desafiolatam.desafiodos.orm.Tarea
-import cl.desafiolatam.desafiodos.orm.TareaDB
-import cl.desafiolatam.desafiodos.orm.TareaDAO
 import androidx.room.Room
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     private lateinit var list: RecyclerView
     private lateinit var adapter: TaskListAdapter
-    private lateinit var db : TareaDB
-    private lateinit var dao: TareaDAO
+    private lateinit var viewModel: TaskViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,14 +32,16 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         setUpViews()
-	db = Room.databaseBuilder(this, TareaDB::class.java, "tareasdb").allowMainThreadQueries().build()
-	dao = db.getTareaDAO()
+	viewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
+	viewModel.allTareas.observe(this, Observer {
+		adapter.updateData(it)
+	})
     }
 
-    override fun onItemClick(taskItem: TaskUIDataHolder) {
+    override fun onItemClick(taskItem: Tarea) {
         val dialogView = layoutInflater.inflate(R.layout.add_task, null)
         val taskText = dialogView.task_input
-        taskText.setText(taskItem.text)
+        taskText.setText(taskItem.descripcion)
         val dialogBuilder = AlertDialog
             .Builder(this)
             .setTitle("Editar una Tarea")
@@ -50,27 +51,10 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             .setPositiveButton("Editar") {
                     dialog: DialogInterface, _: Int ->
                  if (taskText.text?.isNotEmpty()!!) {
-			AsyncTask.execute {
 				updateEntity(taskItem, taskText.text.toString())
-				val newItems = createEntityListFromDatabase(dao.all())
-			runOnUiThread {
-				adapter.updateData(newItems)
-				dialog.dismiss()
-				}
-			}
                 }
             }
         dialogBuilder.create().show()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        AsyncTask.execute {
-            val newItems = createEntityListFromDatabase(dao.all())//mutableListOf<TaskUIDataHolder>()
-            runOnUiThread {
-                adapter.updateData(newItems)
-            }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -95,8 +79,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         list.adapter = adapter
     }
 
-    private fun updateEntity(taskItem: TaskUIDataHolder, newText: String) {
-        dao.update(taskItem.id, newText)
+    private fun updateEntity(taskItem: Tarea, newText: String) {
+        viewModel.update(taskItem.id, newText)
     }
 
     private fun addTask() {
@@ -111,14 +95,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             .setPositiveButton("Agregar") {
                     dialog: DialogInterface, _: Int ->
                 if (taskText.text?.isNotEmpty()!!) {
-			AsyncTask.execute {
-				dao.save(createEntity(taskText.text.toString()))
-				val newItems = createEntityListFromDatabase(dao.all())
-			runOnUiThread {
-				adapter.updateData(newItems)
-				dialog.dismiss()
-			}
-			}
+				viewModel.save(createEntity(taskText.text.toString()))
                 }
             }
         dialogBuilder.create().show()
@@ -132,14 +109,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             .setNegativeButton("Cerrar") {
                     dialog: DialogInterface, _: Int -> dialog.dismiss()}
             .setPositiveButton("Aceptar") { dialog: DialogInterface, _: Int ->
-			AsyncTask.execute {
-				dao.deleteAll()
-				val newItems = createEntityListFromDatabase(dao.all())
-			runOnUiThread {
-				adapter.updateData(newItems)
-				dialog.dismiss()
-			}
-			}
+		    viewModel.deleteAll()
             }
         dialog.show()
     }
