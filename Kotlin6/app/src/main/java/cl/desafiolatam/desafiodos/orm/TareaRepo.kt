@@ -10,8 +10,8 @@ class TareaRepo(private val dao: TareaDAO) {
 		dao.save(tarea)
 	}
 
-	suspend fun update(id: Long, text: String) {
-		dao.update(id, text)
+	suspend fun update(tarea: Tarea) {
+		dao.update(tarea)
 	}
 
 	suspend fun delete(tarea: Tarea) {

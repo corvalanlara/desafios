@@ -15,8 +15,8 @@ interface TareaDAO {
 	@Insert
 	suspend fun save(tarea: Tarea)
 
-	@Query("UPDATE tareas SET descripcion = :newText WHERE id = :id")
-	suspend fun update(id: Long, newText: String)
+	@Update
+	suspend fun update(tarea: Tarea)
 
 	@Delete
 	suspend fun delete(tarea: Tarea)

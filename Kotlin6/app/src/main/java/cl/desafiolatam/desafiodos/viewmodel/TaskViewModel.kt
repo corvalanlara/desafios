@@ -23,8 +23,8 @@ class TaskViewModel(appli: Application) : AndroidViewModel(appli) {
 		repo.save(tarea)
 	}
 
-	fun update(id: Long, text: String) = viewModelScope.launch {
-		repo.update(id, text)
+	fun update(tarea: Tarea) = viewModelScope.launch {
+		repo.update(tarea)
 	}
 
 	fun delete(tarea: Tarea) = viewModelScope.launch {

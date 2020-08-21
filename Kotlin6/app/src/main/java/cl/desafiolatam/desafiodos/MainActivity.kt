@@ -80,7 +80,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     private fun updateEntity(taskItem: Tarea, newText: String) {
-        viewModel.update(taskItem.id, newText)
+	taskItem.descripcion = newText
+        viewModel.update(taskItem)
     }
 
     private fun addTask() {
