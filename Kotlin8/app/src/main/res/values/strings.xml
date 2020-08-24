@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="title">Foreground Service</string>
+    <string name="notification_name">notification name</string>
+    <string name="message_start">Empezar</string>
+    <string name="message_stop">Detener</string>
+    <string name="message_2_user">Hola usuario</string>
+    <string name="detail_text">0</string>
+    <string name="button_start_stop">Button</string>
+</resources>
