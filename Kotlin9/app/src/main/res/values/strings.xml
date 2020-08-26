@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Martes_25_08_Coroutines</string>
+    <string name="download_example">Download Example</string>
+    <string name="nasa_image_of_day">Nasa Image of Day</string>
+</resources>
