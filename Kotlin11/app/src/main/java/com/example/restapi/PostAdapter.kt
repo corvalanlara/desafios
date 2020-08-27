@@ -30,6 +30,7 @@ class PostAdapter(private val myDataset: List<Post>) :
         holder.textId.text = post.id.toString()
         holder.title.text = post.title
 	Picasso.get().load(post.url).into(holder.image)
+	Picasso.get().setIndicatorsEnabled(true)
     }
 
     class PostHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
